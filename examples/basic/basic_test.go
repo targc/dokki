@@ -7,7 +7,11 @@ import (
 )
 
 func TestExampleBasic(t *testing.T) {
-	_ = dokki.SetupTestSuite(
+	s := dokki.NewSetup()
+
+	defer s.Down(t)
+
+	_ = s.SetupTestSuiteDockerCompose(
 		t,
 		"docker-compose.yml",
 		[]string{
